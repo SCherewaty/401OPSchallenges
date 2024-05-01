@@ -12,6 +12,7 @@ import os
 import time
 
 def ping_ip(ip):
+# Needed help with line 16 and used Ethan's review code
   response = os.system(f"ping -c 1 {ip} > /dev/null 2>&1") 
   if response == 0:
     return "Succeeded"
@@ -22,6 +23,7 @@ def main():
     ip = "192.168.40.135"
     while True:
       status = ping_ip(ip)
+# Also needed help with line 27-29 and used Ethan's review code
       timestamp = time.strftime("%Y-%m-%d %H:%M:%S:%f")
       print(f"{timestamp} Network {status} to {ip}")
       time.sleep(2)
