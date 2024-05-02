@@ -4,32 +4,33 @@
 #Date: 05/01/2024
 #Purpose: 
 
-import smtplib, os
+#import the SMTP library
+import smtplib
 
-import ping3
+#Define Variables
+server_info = smtplib.SMTP_SSL("smtp.gmail.com", 465)
+from_address = "steve.opswork29@gmail.com"
+to_address = "scherewaty@gmail.com"
+from_username = "steve.opwork29"
+from_password = os.environ.get("EMAIL_PASSWORD")
+message = "Hi, I'm definitely NOT a Telemarketer..."
 
-import os
-import time
+#Function
+def send_email(
+    server, 
+    from_addr, 
+    to_addr, 
+    from_user,
+    from_pswd,
+    msg
+):
+    
+    server.login(from_user, from_pswd)
+    server.sendmail(from_addr, to_addr, msg)
+    server.quit()
 
-def ping_ip(ip):
-# Needed help with line 16 and used Ethan's review code
-  response = os.system(f"ping -c 1 {ip} > /dev/null 2>&1") 
-  if response == 0:
-    return "Succeeded"
-  else:
-    return "Failed"
-  
-def main():
-    ip = "192.168.40.135"
-    while True:
-      status = ping_ip(ip)
-# Also needed help with line 27-29 and used Ethan's review code
-      timestamp = time.strftime("%Y-%m-%d %H:%M:%S:%f")
-      print(f"{timestamp} Network {status} to {ip}")
-      time.sleep(2)
-      
-if __name__ == "__main__":
-    main()
+
+
     
 
 
