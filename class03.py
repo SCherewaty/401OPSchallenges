@@ -12,6 +12,15 @@ from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 import datetime
 import os
+import subprocess
+import time
+
+to_email = "steve.opswork29@gmail.com"
+user_email = "steve.opswork29@gmail.com"
+password = os.environ.get("email_pw")
+
+#Is the host reachable?
+def check_host(host):
 
 #Send email function?
 def send_email(user_email, to_email, password, host, subject, message):
@@ -32,25 +41,25 @@ def send_email(user_email, to_email, password, host, subject, message):
     
     print("email sent!")
     
-  #Main
-def main()
-    previous_status = "down"
-    current_status = "up"
+#Main
+# def main()
+#     previous_status = "down"
+#     current_status = "up"
     
-    while True:
-        current_status = check_host(host)
-        print(current_status)
-        if current_status != previous_status
-            subject = f"status change alert for {host}"
-            message = f"Host{host} status changed from {previous_status} to (current_status) on {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}."
-            send_email(user_email, to_email, password, host, subject, message)
-        else:
-            pass
-        previous_status = current_status
-        time.sleep(2)
+#     while True:
+#         current_status = check_host(host)
+#         print(current_status)
+#         if current_status != previous_status
+#             subject = f"status change alert for {host}"
+#             message = f"Host{host} status changed from {previous_status} to (current_status) on {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}."
+#             send_email(user_email, to_email, password, host, subject, message)
+#         else:
+#             pass
+#         previous_status = current_status
+#         time.sleep(2)
         
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     main()
         
         
 #end
