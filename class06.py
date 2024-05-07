@@ -5,8 +5,11 @@
 #Purpose: Encrypting in Python
 #Sources: https://www.geeksforgeeks.org/encrypt-and-decrypt-files-using-python/
 #         https://cryptography.io/en/latest/
+# Also went through my wonky code while Omar Ardid shared his in class, I modified some parts with his code.
 
+import subprocess
 from cryptography.fernet import Fernet
+import os
 
 # Encrypt a file 
 def write_key():
@@ -43,7 +46,50 @@ def decrypt_file(file_path, key):
         except FileNotFoundError:
             print(f"Error: Encrypted file '{file_path}' not found")
             
-
+#Create loop for modes
+while True:
+    print("~~~~ Encrypting and Decrypting MENU ~~~~")
+    print("1. Encrypt a file")
+    print("2. Decrypt a file")
+    print("3. Encrypt a message")
+    print("4. Decrypt a message")
+    print("5. Exit")
+    choice = input("Before running this script make sure to have 'cryptography' installed./Enter your choice: ").lower()
+    if choice == '1':
+        write_key()
+        key = load_key()
+        file_path = input("Enter the name of the path to encrypt:")
+        encrypt_file(file_path, key)
+    elif choice == '2':
+        if key is None:
+            print("Error: Please encrypt a file (option 1) to generate the key.")
+            continue
+        file_path = input("Enter the file path to decrypt: ")
+        decrypt_file(file_path, key)
+    elif choice == '3':
+        write_key()
+        key = load_key()
+        message = input("Enter a message to encrypt: ").encode()
+        fernet = Fernet(key)
+        encrypted_message = fernet.encrypt(message)
+        print("Encrypted message:", encrypted_message)
+    elif choice == '4':
+        key = load_key()
+        encrypted_message = input("Enter the encrypted message: ")
+        fernet = Fernet(key)
+        try:
+            decrypted_message = fernet.decrypt(encrypted_message.encode()).decode()
+            print("Decrypted message:", decrypted_message)
+        except Exception as e:
+            print(f"Error decrypting message: {e}")
+    elif choice == '6':
+        print ("Thank you, goodbye.")
+        break
+    else:
+        print("Choose more wisely")
+        
+        
+        
  
 
 #ALTERNATE CODE - I tried this but it was so wildly different and I don't know enough to know if it's usable...
