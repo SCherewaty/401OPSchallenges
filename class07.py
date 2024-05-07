@@ -1,11 +1,11 @@
 #!/usr/bin/python3
 
 #Author: Steve Cherewaty
-#Date: 05/06/2024
-#Purpose: Encrypting in Python
+#Date: 05/07/2024
+#Purpose: Recursive Encrypting
 #Sources: https://www.geeksforgeeks.org/encrypt-and-decrypt-files-using-python/
 #         https://cryptography.io/en/latest/
-# Also went through my wonky code while Omar Ardid shared his in class, I modified some parts with his code.
+
 
 import subprocess
 from cryptography.fernet import Fernet
@@ -87,27 +87,3 @@ while True:
         break
     else:
         print("Choose more wisely")
-        
-        
-        
- 
-
-#ALTERNATE CODE - I tried this but it was so wildly different and I don't know enough to know if it's usable...
-# from cryptography.fernet import Fernet
-# key = Fernet.generate_key()
-
-# with open("401class2A.py", 'rb') as file:
-#     data = file.read()
-    
-# # Encrypt the data
-# Fernet = Fernet(key)
-# encrypted_data = Fernet.encrypt(data)
-
-# with open("401class2A_encrypted.py", 'wb') as encrypted_file:
-#     encrypted_file.write(encrypted_data)
-
-
-    
-    
-        
-        
