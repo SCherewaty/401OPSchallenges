@@ -3,10 +3,11 @@
 #Author: Steve Cherewaty
 #Date: 05/07/2024
 #Purpose: Recursive Encrypting (Part 2)
-#Sources: 
+#Sources: https://www.pythoncentral.io/recursive-file-and-directory-manipulation-in-python-part-1/
+#         https://stackoverflow.com/questions/62848017/using-python-cryptography-module-to-encrypt-recursively
 
 
-import subprocess
+#Import Fernet
 from cryptography.fernet import Fernet
 import os
 
@@ -58,4 +59,38 @@ def main():
     
     mode = input("enter mode: ")
     
-   
+   if mode == '1':
+       file_path = input("Enter file path: ")
+       if os.path.exists(file_path):
+           encrypt_file(file_path)
+           print("File is encrypted!")
+       else:
+           print("File not found.")
+    elif mode =='2':
+        file_path = input("Enter file path: ")
+       if os.path.exists(file_path):
+           decrypt_file(file_path)
+           print("File is decrypted!")
+       else:
+           print("File not found.")
+     elif mode =='3':
+        folder_path = input("Enter folder path: ")
+       if os.path.exists(folder_path):
+           encrypt_file(folder_path)
+           print("Folder is encrypted and contents exposed!")
+       else:
+           print("Folder not found.")
+    elif mode =='4':
+        folder_path = input("Enter folder path: ")
+       if os.path.exists(folder_path):
+           decrypt_file(folder_path)
+           print("Folder is decrypted and contents locked down!")
+       else:
+           print("Folder not found. ")
+    else:
+        print("Error: invalid entry. ")
+        
+if __name__ == "__main__":
+    main()
+    
+#end
