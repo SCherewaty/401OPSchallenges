@@ -3,14 +3,26 @@
 #Author: Steve Cherewaty
 #Date: 05/13/2024
 #Purpose: SCAPY practice
-#Sources: https://www.pythoncentral.io/recursive-file-and-directory-manipulation-in-python-part-1/
-#         https://stackoverflow.com/questions/62848017/using-python-cryptography-module-to-encrypt-recursively
+#Sources: 
+#      
 
 
 #Import scapy
+import scapy.all as scapy 
 
-import scapy.all as scapy
+# Create ethernet frame that's empty and add an IP layer
+my_frame = scapy.Ether() / scapy.ARP()
 
+print(my_frame)
+print('-' * 80)
+#print(my_frame.show())
+#print('-' * 80)
+
+# Use sniff function in scapy to capture 10 packets of data
 packets = scapy.sniff(count=10)
 
+# Let's see them
 print(packets.summary())
+
+# Create for loop to scan ports
+#for my_frame 
