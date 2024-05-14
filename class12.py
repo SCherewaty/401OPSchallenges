@@ -11,6 +11,8 @@
 from scapy.all import *
 import logging
 
+logging.getLogger("scapy.runtime").SetLevel(logging.ERROR)
+
 # User input for specified range
 target_IP = input("What is the target IP address? ")
 start_port = int(input("What's the start of the port range? "))
@@ -39,3 +41,14 @@ def scan_port(target_IP, port):
             print(f"Port {port} is filtered.")
     else:
         print(f"Port {port} is filtered.")
+        
+def scan_ports(target_IP, port_range):
+    
+    for port in port_range:
+        scan_port(host, port)
+
+if __name__ == "__main__":
+    target_host = "192.168.40.135"  
+    ports_to_scan = range(20, 1025) 
+
+    scan_ports(target_host, ports_to_scan)
