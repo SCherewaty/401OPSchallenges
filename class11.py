@@ -7,13 +7,13 @@
 #  https://stackoverflow.com/questions/61180264/find-webserver-listening-on-port-with-scapy-port-scanner
 #  Also Gilbert Collado and Omar Ardid helped me with this during class.   
 
-from scapy.all import *
+from scapy.all import IP, TCP, sr1, send
 import logging  
 
 # Disable Scapy's verbose logging output
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 
-def scan_ports(host, port):
+def scan_port(host, port):
   
     # Create a SYN packet with the target host and port
     syn_packet = IP(dst=host) / TCP(dport=port, flags='S')
@@ -41,10 +41,10 @@ def scan_ports(host, port):
         # No TCP layer in the response, port is considered filtered
         print(f"Port {port} is filtered.")
 
-def scan_ports(host, port_range):
+def scan_ports_range(host, port_range):
  
     for port in port_range:
-        scan_ports(host, port)
+        scan_port(host, port)
 
 if __name__ == "__main__":
      # Define the host IP to scan
@@ -52,7 +52,7 @@ if __name__ == "__main__":
     # Define the range of ports to scan (from port 20 to 1024)
     ports_to_scan = range(20, 1025)  
 
-    scan_ports(target_host, ports_to_scan)  
+    scan_ports_range(target_host, ports_to_scan)  
 
 
         
