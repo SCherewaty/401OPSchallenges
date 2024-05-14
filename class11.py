@@ -50,7 +50,7 @@ if __name__ == "__main__":
      # Define the host IP to scan
     target_host = "192.168.40.135" 
     # Define the range of ports to scan (from port 20 to 1024)
-    ports_to_scan = range(20, 1025)  
+    ports_to_scan = range(22, 25)  
 
     scan_ports_range(target_host, ports_to_scan)  
 
