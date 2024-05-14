@@ -6,23 +6,23 @@
 #Sources: 
 #      
 
-
 #Import scapy
-import scapy.all as scapy 
+#import scapy.all as scapy 
+
+# User input for specified range
+target_IP = input("What is the target IP address? ")
+start_port = int(input("What's the start of the port range? "))
+end_port = int(input("What's the end of the range? "))
 
 # Create ethernet frame that's empty and add an IP layer
 my_frame = scapy.Ether() / scapy.ARP()
 
-print(my_frame)
-print('-' * 80)
-#print(my_frame.show())
-#print('-' * 80)
+# Create the function
+def scan_port(target_IP, port):
+    
 
-# Use sniff function in scapy to capture 10 packets of data
-packets = scapy.sniff(count=10)
 
-# Let's see them
-print(packets.summary())
 
-# Create for loop to scan ports
-#for my_frame 
+# Loop for port scanning
+for port in range(start_port, end_port + 1):
+    scan_port(target_IP, port)
