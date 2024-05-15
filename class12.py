@@ -3,9 +3,7 @@
 #Author: Steve Cherewaty
 #Date: 05/14/2024
 #Purpose: SCAPY practice part 2
-#Sources: https://scapy.readthedocs.io/en/latest/usage.html#icmp-ping
-#  https://stackoverflow.com/questions/61180264/find-webserver-listening-on-port-with-scapy-port-scanner
-#  Also Gilbert Collado helped me with this during class.   
+#Sources: https://scapy.readthedocs.io/en/latest/usage.html#icmp-ping 
 
 #Import scapy
 from scapy.all import IP, TCP, sr1, send
@@ -13,6 +11,37 @@ import logging
 
 # Disable Scapy's verbose logging output
 logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
+
+# Add a menu that gives choices to include ICMP scan
+def display_menu():
+    menu = {
+        '1': "Search via TCP.", 
+        '2': "Search via ICMP.",
+        'E': "Exit."
+    }
+
+    options = sorted(menu.keys())
+    for entry in options:
+        print(entry, menu[entry])
+    
+def main():
+    while True:
+        display_menu()
+        selection = input("Please Select (1, 2, or E): ")
+        if selection == '1':
+            print("TCP")
+            # TCP 
+        elif selection == '2':
+            print("ICMP")
+            # ICMP
+        elif selection == 'E':
+            print("Exiting...")
+            break
+        else:
+            print("Invalid option. Please enter 1 for TCP, 2 for ICMP, or E to exit.")
+
+if __name__ == "__main__":
+    main()
 
 def scan_port(host, port):
   
@@ -51,7 +80,7 @@ if __name__ == "__main__":
      # Define the host IP to scan
     target_host = "192.168.40.135" 
     # Define the range of ports to scan (from port 20 to 1024)
-    ports_to_scan = range(20, 1025)  
+    ports_to_scan = range(20, 25)  
 
     scan_ports_range(target_host, ports_to_scan)  
   
