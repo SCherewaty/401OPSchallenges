@@ -1,11 +1,7 @@
 #!/usr/bin/python3
 
-#Author: Steve Cherewaty
-#Date: 05/14/2024
-#Purpose: SCAPY practice part 2
-#Sources: https://scapy.readthedocs.io/en/latest/usage.html#icmp-ping 
+#PRACTICE
 
-#Import scapy
 from scapy.all import IP, TCP, sr1, send, ICMP
 import logging  
 from ipaddress import IPv4Network
@@ -122,5 +118,4 @@ def main():
 if __name__ == "__main__":
     main()
   
-    
     
