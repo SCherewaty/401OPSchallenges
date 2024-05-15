@@ -118,7 +118,6 @@ def main():
             print("Invalid option. Please enter 1 for TCP, 2 for ICMP, or E to exit.")
 
 
-
 if __name__ == "__main__":
     main()
   
