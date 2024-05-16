@@ -4,22 +4,18 @@
 #Date: 05/15/2024
 #Purpose: SCAPY practice part 3
 #Sources: https://scapy.readthedocs.io/en/latest/usage.html#icmp-ping 
-
-# 
-
+#  https://stackoverflow.com/questions/61180264/find-webserver-listening-on-port-with-scapy-port-scanner
+# Also filled in gaps with what Ethan and Ricky covered in review.
 
 #Import scapy
 from scapy.all import IP, TCP, sr1, send, ICMP
 import logging  
 from ipaddress import IPv4Network
 
-# Disable Scapy's verbose logging output
-logging.getLogger("scapy.runtime").setLevel(logging.ERROR)
 
 def ping_host(ip):
     response = sr1(IP(dst=ip)/ICMP(), timeout=2, verbose=0)
-    if response = True
-    return response
+    return response == None 
 
 def scan_ports(ip):
     common_ports = [22, 23, 443]
@@ -27,7 +23,7 @@ def scan_ports(ip):
     
     for port in common_ports:
         response = sr1(IP(dst=ip)/TCP(dport=port, flags="S"), timeout=1, verbose=0) 
-        if response and response.haslayer(TCP) and response[TCP].flags == 0x12
+        if response and response.haslayer(TCP) and response[TCP].flags == 0x12:
             open_ports.append(port)
             sr1(IP(dst=ip)/TCP(dport=port, flags="R"), timeout=1, verbose=0)
             
@@ -50,7 +46,7 @@ def main():
 if __name__ == "__main__":
     main()
     
-       
+
 
 
   
