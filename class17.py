@@ -7,7 +7,10 @@
 # Demo Code to start & worked with Brad again last night 
 # Class review and refined from - Brad and Ethan this morning as well.
 
-import time, paramiko, getpass
+import time
+import paramiko
+import getpass
+import os 
 
 def iterator():
 # Prompt user for file path, default to 'rockyou.txt'
