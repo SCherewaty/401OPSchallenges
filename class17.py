@@ -4,8 +4,8 @@
 #Date: 05/21/2024
 #Purpose: Brute Force II
 #Sources: https://null-byte.wonderhowto.com/how-to/sploit-make-ssh-brute-forcer-python-0161689/
-# Demo Code to start & worked with Brad again 
-# Class review from - 
+# Demo Code to start & worked with Brad again last night 
+# Class review and refined from - Brad and Ethan this morning as well.
 
 import time, paramiko, getpass
 
@@ -34,8 +34,7 @@ def iterator():
 def check_password():
     usr_password = getpass.getpass(prompt="Please enter a password: ") 
 # Prompt user for file path, default to 'rockyou.txt' 
-    usr_filepath = input("Let's check the strength of that password.\nPlease enter a dictionary filepath:\n") or "rockyou.txt"  
-#usr_filepath = '/home/osboxes/Desktop/rockyou2.txt' # Alternative test filepath
+    usr_filepath = input("Checking the strength of that password.\nPlease enter a dictionary filepath:\n") or "rockyou.txt"  
 
     if not os.path.isfile(usr_filepath): 
         print(f"File not found: {usr_filepath}")  
@@ -57,8 +56,9 @@ def check_password():
         print("Your password is acceptable. Good job.")  # Print message if password is not found
     else:
         print("Your password was found in the dictionary. Please choose another password.")  # Print message if password is found
-    t2 = time.time()  # Record the end time
-    print(f"Password check completed in {t2 - t1:.2f} seconds.")  # Print the duration of the check
+    t2 = time.time()  
+    # Print the duration of the check
+    print(f"Password check completed in {t2 - t1:.2f} seconds.")  
 
 def brute_force_ssh():
     ip = input("Enter the target IP address:\n")
