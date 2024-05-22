@@ -4,7 +4,7 @@
 #Date: 05/21/2024
 #Purpose: Brute Force II
 #Sources: https://null-byte.wonderhowto.com/how-to/sploit-make-ssh-brute-forcer-python-0161689/
-# Demo Code & worked with Brad again 
+# Demo Code to start & worked with Brad again 
 # Class review from - 
 
 import time, paramiko, getpass
@@ -19,39 +19,41 @@ def iterator():
         return  
     
     file = open(filepath, encoding="ISO-8859-1") 
-    line = file.readline()  # Read the first line from the file
+ # Read the first line from the file
+    line = file.readline() 
     while line:  
         line = line.rstrip()  
-# Remove any trailing whitespace from the line
         word = line  
         print(word)  
         time.sleep(1)  
-        line = file.readline()  
 # Read the next line from the file
-    file.close()  # Close the file
+        line = file.readline()  
+# Close the file
+    file.close()  
 
 def check_password():
-    usr_password = getpass.getpass(prompt="Please enter a password: ")  # Securely get the user's password
-    usr_filepath = input("Let's check the strength of that password.\nPlease enter a dictionary filepath:\n") or "rockyou.txt"  # Prompt user for file path, default to 'rockyou.txt'
-    #usr_filepath = '/home/osboxes/Desktop/rockyou2.txt' # Alternative test filepath
+    usr_password = getpass.getpass(prompt="Please enter a password: ") 
+# Prompt user for file path, default to 'rockyou.txt' 
+    usr_filepath = input("Let's check the strength of that password.\nPlease enter a dictionary filepath:\n") or "rockyou.txt"  
+#usr_filepath = '/home/osboxes/Desktop/rockyou2.txt' # Alternative test filepath
 
-    if not os.path.isfile(usr_filepath):  # Check if the file exists
-        print(f"File not found: {usr_filepath}")  # Print error message if file not found
+    if not os.path.isfile(usr_filepath): 
+        print(f"File not found: {usr_filepath}")  
         return  # Exit the function
     
     print(f"Checking password against the words in '{usr_filepath}', just a moment.")  # Inform the user about the check
     t1 = time.time()  # Record the start time
-    file = open(usr_filepath, encoding="ISO-8859-1")  # Open the file with appropriate encoding
-    line = file.readline()  # Read the first line from the file
-    wordlist = []  # Initialize an empty list to store words
-    while line:  # Loop until no more lines in the file
-        line = line.rstrip()  # Remove any trailing whitespace from the line
-        word = line  # Assign the cleaned line to the variable word
-        wordlist.append(word)  # Append the word to the wordlist
-        line = file.readline()  # Read the next line from the file
-    file.close()  # Close the file
-    
-    if usr_password not in wordlist:  # Check if the password is not in the wordlist
+    file = open(usr_filepath, encoding="ISO-8859-1") 
+    line = file.readline()  
+    wordlist = []  
+    while line:  
+        line = line.rstrip()  
+        word = line  
+        wordlist.append(word)  
+        line = file.readline()  
+    file.close()  
+ # Check if the password is not in the wordlist   
+    if usr_password not in wordlist:  
         print("Your password is acceptable. Good job.")  # Print message if password is not found
     else:
         print("Your password was found in the dictionary. Please choose another password.")  # Print message if password is found
@@ -93,25 +95,26 @@ def brute_force_ssh():
     ssh.close()
 
 # Main
-if __name__ == "__main__":  # This condition ensures the script runs only if it is executed directly
-    while True:  # Start an infinite loop
-        print("\nBrute Force Wordlist Attack Tool Menu")  # Print the menu
-        print("1 - Offensive, Dictionary Iterator")  # Option 1: Run the iterator function
-        print("2 - Defensive, Password Recognized")  # Option 2: Run the check_password function
-        print("3 - Offensive, SSH Brute Force")  # Option 3: Run the brute_force_ssh function
-        print("4 - Exit")  # Option 4: Exit the program
-        
-        mode = input("Please enter a number: ")  # Get user input for menu option
+if __name__ == "__main__":  
+# Start an  loop
+    while True:  
+        print("\nBrute Force Wordlist Attack Tool Menu")  
+        print("1 - Offensive, Dictionary Iterator")  
+        print("2 - Defensive, Password Recognized")  
+        print("3 - Offensive, SSH Brute Force")  
+        print("4 - Exit")  
+# Get user input for menu option
+        mode = input("Please enter a number: ")  
         
         if mode == "1":
-            iterator()  # Call the iterator function if user selects mode 1
+            iterator()  
         elif mode == "2":
-            check_password()  # Call the check_password function if user selects mode 2
+            check_password() 
         elif mode == "3":
-            brute_force_ssh()  # Call the brute_force_ssh function if user selects mode 3
+            brute_force_ssh() 
         elif mode == "4":
-            break  # Exit the loop and end the program if user selects mode 4
+            break  
         else:
-            print("Invalid selection...")  # Print a message if the user enters an invalid selection
+            print("Invalid selection...") 
 
         
