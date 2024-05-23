@@ -11,7 +11,7 @@ import time
 import paramiko
 import getpass
 import os 
-
+from zipfile import ZipFile
 
 def iterator():
 # Prompt user for file path, default to 'rockyou.txt'
@@ -29,7 +29,7 @@ def iterator():
         line = line.rstrip()  
         word = line  
         print(word)  
-        time.sleep(1)  
+        time.sleep(10)  
 # Read the next line from the file
         line = file.readline()  
 # Close the file
@@ -42,10 +42,10 @@ def check_password():
 
     if not os.path.isfile(usr_filepath): 
         print(f"File not found: {usr_filepath}")  
-        return  # Exit the function
+        return  
     
-    print(f"Checking password against the words in '{usr_filepath}', just a moment.")  # Inform the user about the check
-    t1 = time.time()  # Record the start time
+    print(f"Checking password against the words in '{usr_filepath}', hang on for a sec.") 
+    t1 = time.time()  
     file = open(usr_filepath, encoding="ISO-8859-1") 
     line = file.readline()  
     wordlist = []  
@@ -55,11 +55,12 @@ def check_password():
         wordlist.append(word)  
         line = file.readline()  
     file.close()  
+    
  # Check if the password is not in the wordlist   
     if usr_password not in wordlist:  
-        print("Your password is acceptable. Good job.")  # Print message if password is not found
+        print("Your password is acceptable. Good job.")  
     else:
-        print("Your password was found in the dictionary. Please choose another password.")  # Print message if password is found
+        print("Your password was found in the dictionary. Try again...you have 10 seconds...")  
     t2 = time.time()  
     # Print the duration of the check
     print(f"Password check completed in {t2 - t1:.2f} seconds.")  
@@ -97,6 +98,35 @@ def brute_force_ssh():
     
     file.close()
     ssh.close()
+    
+    
+ #  Prompt user for path to zip file 
+def extract_zip():
+    zip_file = input("Enter the path of the zip file:\n")
+    if not os.path.isfile(zip_file):
+        print (f"FIle not found: {zip_file}")
+        return
+# Prompt usr for file path or rockyou
+    dictionary_path = input("Enter your dictionary filepath:\n") or "rockyou.txt"
+    if not os.path.isfile(dictionary_path):
+        print(f"File not found: {dictionary_path}")
+        return
+
+    with ZipFile(zip_file) as zf:
+        with open(dictionary_path, encoding="ISO-8859-1") as file:
+            for line in file:
+                password = line.strip()
+                try:
+                    zf.extractall(pwd=bytes(password, 'utf-8'))
+                    print(f"Success! Password: {password}")
+                    return
+                except RuntimeError:
+                    print(f"Failed: {password}")
+                except Exception as e:
+                    print(f"Error: {e}")
+                    return
+    print("No valid password found in the dictionary.")
+
 
 # Main
 if __name__ == "__main__":  
@@ -120,3 +150,5 @@ if __name__ == "__main__":
             break  
         else:
             print("Invalid selection...") 
+            
+#  End
