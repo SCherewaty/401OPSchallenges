@@ -135,8 +135,10 @@ if __name__ == "__main__":
         print("\nBrute Force Wordlist Attack Tool Menu")  
         print("1 - Offensive, Dictionary Iterator")  
         print("2 - Defensive, Password Recognized")  
-        print("3 - Offensive, SSH Brute Force")  
-        print("4 - Exit")  
+        print("3 - Offensive, SSH Brute Force") 
+        print("4 - Offensive, Zip Brute Force ") 
+        print("5 - Exit") 
+         
 # Get user input for menu option
         mode = input("Please enter a number: ")  
         
