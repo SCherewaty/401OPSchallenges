@@ -4,6 +4,7 @@
 #Date: 05/22/2024
 #Purpose: Brute Force III
 #Sources: https://docs.python.org/3/library/zipfile.html
+#https://www.howtoforge.com/how-to-protect-zip-file-with-password-on-ubuntu-1804/
 
 
 import time
