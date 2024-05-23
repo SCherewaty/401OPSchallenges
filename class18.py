@@ -12,14 +12,6 @@ import paramiko
 import getpass
 import os 
 
-from zipfile import ZipFile
-
-zip_file = ### Your password protected zip file ###
-password = ### Password to guess ###
-
-with ZipFile(zip_file) as zf:
-  zf.extractall(pwd=bytes(password,'utf-8'))
-
 
 def iterator():
 # Prompt user for file path, default to 'rockyou.txt'
