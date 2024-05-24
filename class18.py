@@ -29,7 +29,7 @@ def iterator():
         line = line.rstrip()  
         word = line  
         print(word)  
-        time.sleep(4)  
+        time.sleep(1)  
 # Read the next line from the file
         line = file.readline()  
 # Close the file
