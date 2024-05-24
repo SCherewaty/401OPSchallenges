@@ -29,7 +29,7 @@ def iterator():
         line = line.rstrip()  
         word = line  
         print(word)  
-        time.sleep(10)  
+        time.sleep(4)  
 # Read the next line from the file
         line = file.readline()  
 # Close the file
@@ -149,6 +149,8 @@ if __name__ == "__main__":
         elif mode == "3":
             brute_force_ssh() 
         elif mode == "4":
+            extract_zip()
+        elif mode == "5":
             break  
         else:
             print("Invalid selection...") 
