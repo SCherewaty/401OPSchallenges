@@ -18,16 +18,32 @@ import zipfile
 logging.basicConfig(filename="demo.log", format='%(asctime)s %(message)s', filemode='w', level=logging.DEBUG)
 
 #Create a log object
-test_log = logging.getLogger("my_logger")
+test_log = logging.getLogger(__name__))
 
 def iterator():
 # Prompt user for file path, default to 'rockyou.txt'
     filepath = input("Enter your dictionary filepath:\n") or "rockyou.txt"  
 
-# Check if the file exists
+# Function to read lines from a file with optional delay
+def read_file(filepath, delay=0):
     if not os.path.isfile(filepath):  
-        print(f"File not found: {filepath}")  
-        return  
+        logger.error(f"File not found: {filepath}")  
+        return None
+    with open(filepath, encoding="ISO-8859-1") as file:  
+        for line in file:
+            yield line.rstrip()  
+            if delay:
+                time.sleep(delay)  
+ 
+ # Function to iterate through words in a dictionary file
+def iterator():
+    filepath = input("Enter your dictionary filepath:\n") or "rockyou.txt"
+    for word in read_file(filepath, delay=1):  # Read file with 1-second delay between lines
+        if word is None:
+            return
+        logger.info(f"Read word: {word}")  # [MOD] Log each word read
+        print(word)
+ 
     
     file = open(filepath, encoding="ISO-8859-1") 
  # Read the first line from the file
