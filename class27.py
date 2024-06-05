@@ -3,7 +3,9 @@
 #Author: Steve Cherewaty
 #Date: 06/04/2024
 #Purpose: Logging
-#Sources: 
+#Sources: https://www.blog.pythonlibrary.org/2014/02/11/python-how-to-create-rotating-logs/
+# https://tutorialedge.net/python/python-logging-best-practices/
+# Also worked with Cody Blahnik on this assignment
 
 import time  
 import getpass  
@@ -144,3 +146,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
+# End
