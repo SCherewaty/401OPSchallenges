@@ -6,23 +6,27 @@
 #Sources: 
 
 #Import Libraries
-import logging
 import time  
 import getpass  
 import os  
 import paramiko 
 import zipfile  
+import logging
+from logging.handlers import RotatingFileHandler
+
+# Set up logging with rotation
+log_handler = RotatingFileHandler('brute_force.log', maxBytes=5*1024*1024, backupCount=3)  # 5MB per file, 3 backups
+log_handler.setLevel(logging.DEBUG)
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+log_handler.setFormatter(formatter)
   
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.DEBUG)
+logger.addHandler(log_handler)
 
-#Configure the logger
-logging.basicConfig(filename="demo.log", format='%(asctime)s %(message)s', filemode='w', level=logging.DEBUG)
-
-#Create a log object
-test_log = logging.getLogger(__name__)
-
-def iterator():
+#def iterator():
 # Prompt user for file path, default to 'rockyou.txt'
-    filepath = input("Enter your dictionary filepath:\n") or "rockyou.txt"  
+    #filepath = input("Enter your dictionary filepath:\n") or "rockyou.txt"  
 
 # Function to read lines from a file with optional delay
 def read_file(filepath, delay=0):
