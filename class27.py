@@ -18,7 +18,7 @@ import zipfile
 logging.basicConfig(filename="demo.log", format='%(asctime)s %(message)s', filemode='w', level=logging.DEBUG)
 
 #Create a log object
-test_log = logging.getLogger(__name__))
+test_log = logging.getLogger(__name__)
 
 def iterator():
 # Prompt user for file path, default to 'rockyou.txt'
