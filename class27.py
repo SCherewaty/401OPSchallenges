@@ -95,14 +95,6 @@ def brute_force_zip():
     if wordlist is None:
         return
     
-#         file = open(filepath, encoding="ISO-8859-1") 
-#  # Read the first line from the file
-#     line = file.readline() 
-#     while line:  
-#         line = line.rstrip()  
-#         word = line  
-#         print(word)  
-#         time.sleep(1)  
 
     with zipfile.ZipFile(zip_filepath) as zf:  
         for password in wordlist:
