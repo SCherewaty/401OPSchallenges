@@ -5,7 +5,6 @@
 #Purpose: Signature based malware PART 1
 #Sources: https://www.howtogeek.com/112674/how-to-find-files-and-folders-in-linux-using-the-command-line/
 # https://www.howtogeek.com/206097/how-to-use-find-from-the-windows-command-prompt/
-# 
 
 import os
 import platform
@@ -38,7 +37,7 @@ if __name__ == "__main__":
         current_os = platform.system()
         print(f"Current operating system: {current_os}")
         
-          search_files(filename, search_directory)
+        search_files(filename, search_directory)
           
 # End
 
