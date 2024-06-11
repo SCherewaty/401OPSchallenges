@@ -20,6 +20,22 @@ def search_files(filename, search_directory):
             if name == filename:
                 hit_count += 1
                 print(f"File found: {os.path.join(root, name)}")
-    
+    print(f"\nTotal files searched: {file_count}")
+    print(f"Total hits found: {hit_count}")
+
+if __name__ == "__main__":
+    filename = input("Enter the file name to search for: ")
+    search_directory = input("Enter the directory to search in: ")
+
+    # Normalize the directory path
+    search_directory = os.path.normpath(search_directory)
+
+    # Verify if the directory exists
+    if not os.path.isdir(search_directory):
+        print(f"Error: The directory {search_directory} does not exist.")
+    else:
+        # Check the operating system
+        current_os = platform.system()
+        print(f"Current operating system: {current_os}")
 
 
