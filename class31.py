@@ -19,13 +19,13 @@ def search_files(filename, search_directory):
         for name in files:
             if name == filename:
                 hit_count += 1
-                print(f"File found: {os.path.join(root, name)}")
+                print(f"Your file was found: {os.path.join(root, name)}")
     print(f"\nTotal files searched: {file_count}")
     print(f"Total hits found: {hit_count}")
 
 if __name__ == "__main__":
-    filename = input("Enter the file name to search for: ")
-    search_directory = input("Enter the directory to search in: ")
+    filename = input("Enter the name of the file you wish to search for: ")
+    search_directory = input("Enter the directory in which you want to search: ")
 
     # Normalize the directory path
     search_directory = os.path.normpath(search_directory)
@@ -37,5 +37,9 @@ if __name__ == "__main__":
         # Check the operating system
         current_os = platform.system()
         print(f"Current operating system: {current_os}")
+        
+          search_files(filename, search_directory)
+          
+# End
 
 
