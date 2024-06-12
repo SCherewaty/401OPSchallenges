@@ -5,7 +5,7 @@
 #Purpose: Signature based malware PART 2
 #Sources: https://www.howtogeek.com/206097/how-to-use-find-from-the-windows-command-prompt/
 # https://www.programiz.com/python-programming/examples/hash-file
-
+# Conferred with Omar Ardid and ChatGPT for this assignment
 
 import os
 import sys
@@ -45,43 +45,43 @@ def search_file(file_name, search_directory):
     except Exception as e:
         print(f"YO! An error occurred: {str(e)}")
 
+ # Print search summary
+    print(f"\n Search completed. {files_searched} files searched. {hits} hits found.")
+    # Wait for user input before exiting
+    input("\n Press Enter to exit.")
 
+# Function to generate the MD5 hash of a file
 def generate_md5(file_path):
-    """Generate the MD5 hash for the given file."""
     hash_md5 = hashlib.md5()
     try:
         with open(file_path, "rb") as f:
             for chunk in iter(lambda: f.read(4096), b""):
                 hash_md5.update(chunk)
-        return hash_md5.hexdigest()
-    except IOError:
-        return "Error reading file"
+    except Exception as e:
+        print(f"Oh no! Error reading file {file_path}: {str(e)}")
+        return None
+    return hash_md5.hexdigest()
 
-def search_files_and_folders(search_directory):
-    total_items_count = 0
-
-    for root, dirs, files in os.walk(search_directory):
-        for name in dirs + files:
-            item_path = os.path.join(root, name)
-            total_items_count += 1
+# Main
+def main():
+    """Generate the MD5 hash for the given file."""
+    operating_system = sys.platform
+    print(operating_system)
+    if operating_system.startswith('linux') or operating_system.startswith('mac'):
+        file_name = input("Enter the file name you want to search for Homie: ")
+        search_directory = input("Enter the directory to search in Bro: ")
             
-            if os.path.isfile(item_path):
-                file_size = os.path.getsize(item_path)
-                md5_hash = generate_md5(item_path)
-                timestamp = time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(os.path.getmtime(item_path)))
-                    
-            print(f"Timestamp: {timestamp}")
-            print(f"File Name: {name}")
-            print(f"File Size: {file_size} bytes")
-            print(f"File Path: {item_path}")
-            print(f"MD5 Hash: {md5_hash}\n")
-        else:
-            print(f"Directory: {item_path}")
-
-        print(f"\nTotal items (files and directories) found: {total_items_count}")
+        if not os.path.exists(search_directory):
+            print("That directory doesnt exist...trust me I'm a robot.")
+            return
+    else:
+        print("We don't support that OS.")
+        return
+                 
+    search_file(file_name, search_directory)    
 
 if __name__ == "__main__":
-    search_directory = input("Enter the directory in which you want to search: ")
+    main()
 
 
 
