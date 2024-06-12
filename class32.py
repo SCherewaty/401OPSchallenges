@@ -23,25 +23,33 @@ def generate_md5(file_path):
     except IOError:
         return "Error reading file"
 
-
 def search_files_and_folders(search_directory):
     total_items_count = 0
 
-    for root, dirs, files in os.walk(search_directory):
-        file_count += len(files)
-        for name in files:
-            if name == filename:
-                hit_count += 1
-                print(f"Your file was found: {os.path.join(root, name)}")
-    print(f"\nTotal files searched: {file_count}")
-    print(f"Total hits found: {hit_count}")
-    
-if __name__ == "__main__":
-    search_directory = input("Enter the directory in which you want to search: "
+for root, dirs, files in os.walk(search_directory):
+        for name in dirs + files:
+            item_path = os.path.join(root, name)
+            total_items_count += 1
+            
+            if os.path.isfile(item_path):
+                file_size = os.path.getsize(item_path)
+                md5_hash = generate_md5(item_path)
+                timestamp = time.strftime('%Y-%m-%d %H:%M:%S', time.gmtime(os.path.getmtime(item_path)))
+                    
+            print(f"Timestamp: {timestamp}")
+            print(f"File Name: {name}")
+            print(f"File Size: {file_size} bytes")
+            print(f"File Path: {item_path}")
+            print(f"MD5 Hash: {md5_hash}\n")
+        else:
+            print(f"Directory: {item_path}")
 
-# if __name__ == "__main__":
-#     filename = input("Enter the name of the file you wish to search for: ")
-#     search_directory = input("Enter the directory in which you want to search: ")
+        print(f"\nTotal items (files and directories) found: {total_items_count}")
+
+if __name__ == "__main__":
+    search_directory = input("Enter the directory in which you want to search: ")
+
+
 
     # Normalize the directory path
     search_directory = os.path.normpath(search_directory)
@@ -54,7 +62,7 @@ if __name__ == "__main__":
         current_os = platform.system()
         print(f"Current operating system: {current_os}")
         
-        search_files(filename, search_directory)
+        search_files_and_folders(filename, search_directory)
           
 # End
 
