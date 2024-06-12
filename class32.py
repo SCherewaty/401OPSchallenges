@@ -3,13 +3,25 @@
 #Author: Steve Cherewaty
 #Date: 06/11/2024
 #Purpose: Signature based malware PART 2
-#Sources: https://www.howtogeek.com/112674/how-to-find-files-and-folders-in-linux-using-the-command-line/
-# https://www.howtogeek.com/206097/how-to-use-find-from-the-windows-command-prompt/
+#Sources: https://www.howtogeek.com/206097/how-to-use-find-from-the-windows-command-prompt/
+# https://www.programiz.com/python-programming/examples/hash-file
+
 
 import os
 import platform
 import hashlib
 import time
+
+def generate_md5(file_path):
+    """Generate the MD5 hash for the given file."""
+    hash_md5 = hashlib.md5()
+    try:
+        with open(file_path, "rb") as f:
+            for chunk in iter(lambda: f.read(4096), b""):
+                hash_md5.update(chunk)
+        return hash_md5.hexdigest()
+    except IOError:
+        return "Error reading file"
 
 
 def search_files_and_folders(search_directory):
