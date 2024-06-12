@@ -9,9 +9,8 @@
 import os
 import platform
 
-def search_files(filename, search_directory):
-    file_count = 0
-    hit_count = 0
+def search_files_and_folders(search_directory):
+    total_items_count = 0
 
     for root, dirs, files in os.walk(search_directory):
         file_count += len(files)
