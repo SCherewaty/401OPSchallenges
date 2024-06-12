@@ -8,6 +8,9 @@
 
 import os
 import platform
+import hashlib
+import time
+
 
 def search_files_and_folders(search_directory):
     total_items_count = 0
@@ -20,10 +23,13 @@ def search_files_and_folders(search_directory):
                 print(f"Your file was found: {os.path.join(root, name)}")
     print(f"\nTotal files searched: {file_count}")
     print(f"Total hits found: {hit_count}")
-
+    
 if __name__ == "__main__":
-    filename = input("Enter the name of the file you wish to search for: ")
-    search_directory = input("Enter the directory in which you want to search: ")
+    search_directory = input("Enter the directory in which you want to search: "
+
+# if __name__ == "__main__":
+#     filename = input("Enter the name of the file you wish to search for: ")
+#     search_directory = input("Enter the directory in which you want to search: ")
 
     # Normalize the directory path
     search_directory = os.path.normpath(search_directory)
