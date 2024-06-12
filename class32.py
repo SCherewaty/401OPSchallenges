@@ -8,9 +8,43 @@
 
 
 import os
-import platform
+import sys
 import hashlib
 import time
+
+# Function to search for a file in a directory
+def search_file(file_name, search_directory):
+    # Initialize counters
+    hits = 0
+    files_searched = 0
+
+    try:
+        # Traverse directory and search for files
+        for root, dirs, files in os.walk(search_directory):
+            for file in files:
+                files_searched += 1
+                # Check if file name contains the specified search term
+                if file_name.lower() in file.lower():
+                    hits += 1
+                    file_path = os.path.join(root, file)
+                    # Get the file size
+                    file_size = os.path.getsize(file_path)
+                    # Get the current timestamp
+                    timestamp = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
+                    # Generate the MD5 hash of the file
+                    md5_hash = generate_md5(file_path)
+                    # Print the file details
+                    print(f"Timestamp: {timestamp}")
+                    print(f"File: {file}")
+                    print(f"Path: {file_path}")
+                    print(f"Size: {file_size} bytes")
+                    print(f"MD5: {md5_hash}")
+                    print("-" * 40)
+                    
+# Handle exceptions
+    except Exception as e:
+        print(f"YO! An error occurred: {str(e)}")
+
 
 def generate_md5(file_path):
     """Generate the MD5 hash for the given file."""
@@ -26,7 +60,7 @@ def generate_md5(file_path):
 def search_files_and_folders(search_directory):
     total_items_count = 0
 
-for root, dirs, files in os.walk(search_directory):
+    for root, dirs, files in os.walk(search_directory):
         for name in dirs + files:
             item_path = os.path.join(root, name)
             total_items_count += 1
@@ -51,18 +85,6 @@ if __name__ == "__main__":
 
 
 
-    # Normalize the directory path
-    search_directory = os.path.normpath(search_directory)
-
-    # Verify if the directory exists
-    if not os.path.isdir(search_directory):
-        print(f"Error: The directory {search_directory} does not exist.")
-    else:
-        # Check the operating system
-        current_os = platform.system()
-        print(f"Current operating system: {current_os}")
-        
-        search_files_and_folders(filename, search_directory)
           
 # End
 
