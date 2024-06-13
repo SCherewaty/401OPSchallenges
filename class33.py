@@ -5,7 +5,7 @@
 #Purpose: Signature based malware PART 3
 #Sources: https://www.howtogeek.com/206097/how-to-use-find-from-the-windows-command-prompt/
 # https://www.programiz.com/python-programming/examples/hash-file
-# Conferred with Brad Baack, Omar Ardid and ChatGPT for this assignment
+# Conferred with Brad Baack, Omar Ardid (shared in class) and ChatGPT for this assignment
 
 import os
 import sys
@@ -152,7 +152,7 @@ def main():
         print("You got an unsupported operating system.")  
         return  
 
-# Prompt user for Virustotal API key
+# Prompt user for Virustotal API key (MUST HAVE API KEY)
     api_key = os.getenv('API_KEY_VIRUSTOTAL')  
 # If API key is not set
     if not api_key:  
