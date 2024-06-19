@@ -45,3 +45,10 @@ html_filename = "response.html"
 
 with open(html_filename, "w") as file:
     file.write(html_content)
+    
+# Open the file with Firefox
+firefox_path = "C:/Home/Stevamous Firefox/firefox.exe" # Adjust the path if necessary
+webbrowser.register('firefox', None, webbrowser.BackgroundBrowser(firefox_path))
+webbrowser.get('firefox').open('file://' + os.path.realpath(html_filename)) 
+
+# End
