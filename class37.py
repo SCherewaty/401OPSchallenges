@@ -39,3 +39,9 @@ print(cookie)
 # Send back to site to get a response
 response_with_cookie = requests.get(targetsite, cookies=cookie)
 
+# Capture contents of response
+html_content = response_with_cookie.text
+html_filename = "response.html"
+
+with open(html_filename, "w") as file:
+    file.write(html_content)
