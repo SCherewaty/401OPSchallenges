@@ -14,8 +14,6 @@ from bs4 import BeautifulSoup as bs
 from urllib.parse import urljoin
 
 # Functions
-
-
 def get_all_forms(url):
     soup = bs(requests.get(url).content, "html.parser")
     return soup.find_all("form")
