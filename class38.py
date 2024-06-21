@@ -48,7 +48,6 @@ def get_form_details(form):
 # Function to submit a form with a given payload
 # This function constructs a full URL from the form's action attribute and the base URL, fills the form inputs with a given value (payload), and submits it.
 def submit_form(form_details, url, value):
-def submit_form(form_details, url, value):
     target_url = urljoin(url, form_details["action"])
     inputs = form_details["inputs"]
     data = {}
@@ -59,14 +58,14 @@ def submit_form(form_details, url, value):
         input_value = input.get("value")
         if input_name and input_value:
             data[input_name] = input_value
-
+            
     if form_details["method"] == "post":
         return requests.post(target_url, data=data)
     else:
         return requests.get(target_url, params=data)
 
-### This function scans a URL for XSS vulnerabilities by submitting forms with a test script ###
-### It checks if the test script is executed in the response, indicating an XSS vulnerability ###
+# Function to scan a URL for XSS vulnerabilities
+# Function iterates over all forms in the URL, submits payload, checks if the payload is reflected in response, indicating XSS vulnerability
 def scan_xss(url):
     forms = get_all_forms(url)
     print(f"[+] Detected {len(forms)} forms on {url}.")
@@ -82,7 +81,7 @@ def scan_xss(url):
             is_vulnerable = True
     return is_vulnerable
 
-# Main
+
 
 ### This is the entry point of the script ###
 ### It prompts the user for a URL, scans it for XSS vulnerabilities, and prints the results ###
