@@ -81,24 +81,12 @@ def scan_xss(url):
             is_vulnerable = True
     return is_vulnerable
 
-
-
-### This is the entry point of the script ###
-### It prompts the user for a URL, scans it for XSS vulnerabilities, and prints the results ###
+# Main function to run the script
+# This function prompts the user for a URL, then calls the scan_xss function to check for vulnerabilities.
 if __name__ == "__main__":
     url = input("Enter a URL to test for XSS:") 
     print(scan_xss(url))
 
-### Tested Outputs ###
-### Positive Detection Output:
-# Enter a URL to test for XSS: http://example.com/vulnerable
-# [+] Detected 1 forms on http://example.com/vulnerable.
-# [+] XSS Detected on http://example.com/vulnerable
-# [*] Form details:
-# {'action': 'process.php', 'method': 'post', 'inputs': [{'type': 'text', 'name': 'query'}]}
-
-### Negative Detection Output:
-# Enter a URL to test for XSS: http://example.com/safe
-# [+] Detected 1 forms on http://example.com/safe.
-# No XSS Detected on http://example.com/safe
-# End
+# TODO: When you have finished annotating this script with your own comments, copy it to Web Security Dojo
+# TODO: Test this script against one XSS-positive target and one XSS-negative target
+# TODO: Paste the outputs here as comments in this script, clearly indicating which is positive detection and negative detection
