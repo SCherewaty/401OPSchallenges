@@ -3,35 +3,34 @@
 #Author: Steve Cherewaty
 #Date: 06/19/2024
 #Purpose: XSS Vulnerability Detection with Python
-#Sources: https://thepythoncode.com/article/make-a-xss-vulnerability-scanner-in-python
+#Sources: 
+# 
+# https://thepythoncode.com/article/make-a-xss-vulnerability-scanner-in-python
 # Conferred with ChatGPT for this assignment
 
-# Import libraries
+# Author:      Abdou Rockikz
+# Description: A script to detect XSS vulnerabilities in web forms by injecting a payload and checking the response.
+# Date:        TODO: 06/20/2024
+# Modified by: TODO: Steve Cherewaty
 
+# Make sure to install requests and bs4 before executing this in Python3
+# You can install them using pip:
+# pip3 install requests bs4
+
+# Import libraries
 import requests
 from pprint import pprint
 from bs4 import BeautifulSoup as bs
 from urllib.parse import urljoin
 
-### Install requests and bs4 before executing this in Python3
-
-# Import libraries
-
-import requests
-from pprint import pprint
-from bs4 import BeautifulSoup as bs
-from urllib.parse import urljoin
-
-# Declare functions
-
-### This function fetches all forms from the provided URL ###
-### It helps in identifying the points of user input on the web page ###
+# Function to get all forms from a URL
+# This function fetches the HTML content of the given URL, parses it, and returns all form tags found.
 def get_all_forms(url):
     soup = bs(requests.get(url).content, "html.parser")
     return soup.find_all("form")
 
-### This function extracts details from a form such as action, method, and input fields ###
-### It prepares the necessary information required to submit the form with test data ###
+# Function to extract details of a form
+# This function takes a form element as input and extracts its action URL, method, and input fields.
 def get_form_details(form):
     details = {}
     action = form.attrs.get("action").lower()
@@ -46,8 +45,9 @@ def get_form_details(form):
     details["inputs"] = inputs
     return details
 
-### This function submits a form with the provided data ###
-### It injects a payload into the form and checks if the payload is executed, indicating an XSS vulnerability ###
+# Function to submit a form with a given payload
+# This function constructs a full URL from the form's action attribute and the base URL, fills the form inputs with a given value (payload), and submits it.
+def submit_form(form_details, url, value):
 def submit_form(form_details, url, value):
     target_url = urljoin(url, form_details["action"])
     inputs = form_details["inputs"]
