@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 
 #Author: Steve Cherewaty
-#Date: 06/24/2024
-#Purpose: Attack Tools Pt 1
+#Date: 06/25/2024
+#Purpose: Attack Tools Pt 2
 #Sources: 
 # 
 # https://thepythoncode.com/article/make-a-xss-vulnerability-scanner-in-python
@@ -12,19 +12,16 @@ import nmap
 
 scanner = nmap.PortScanner()
 
-print("Nmap Automation Tool")
-print("--------------------")
+def print_scan_info(scanner, ip_addr):
+    print(scanner.scaninfo())
+    print("IP Status: ", scanner[ip_addr].state())
+    print("All Protocols: ", scanner[ip_addr].all_protocols())
 
-ip_addr = input("IP address to scan: ")
-print("The IP you entered is: ", ip_addr)
-type(ip_addr)
-
-resp = input("""\nSelect scan to execute:
-                1) SYN ACK Scan
-                2) UDP Scan
-                3)              \n""") ### TODO: Select what your third scan type will be
-print("You have selected option: ", resp)
-
+def main():
+    scanner = nmap.PortScanner()
+    print("Nmap Automation Tool")
+    print("--------------------")
+    
 range = '1-50'
 
 ### TODO: Prompt the user to type in a port range for this tool to scan
