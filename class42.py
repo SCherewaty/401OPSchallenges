@@ -3,14 +3,12 @@
 #Author: Steve Cherewaty
 #Date: 06/25/2024
 #Purpose: Attack Tools Pt 2
-#Sources: 
-# 
-# https://thepythoncode.com/article/make-a-xss-vulnerability-scanner-in-python
+#Sources: Demo Code + https://pypi.org/project/python-nmap/
 # Conferred with ChatGPT for this assignment
 
-import nmap
+#!/usr/bin/env python3
 
-scanner = nmap.PortScanner()
+import nmap
 
 def print_scan_info(scanner, ip_addr):
     print(scanner.scaninfo())
@@ -21,14 +19,14 @@ def main():
     scanner = nmap.PortScanner()
     print("Nmap Automation Tool")
     print("--------------------")
-    
- ip_addr = input("IP address to scan: ")
+
+    ip_addr = input("IP address to scan: ")
     print(f"The IP you entered is: {ip_addr}")
 
     scan_type = input("Select scan to execute:\n1) SYN ACK Scan\n2) UDP Scan\n3) OS Detection\n")
     ports = input("Enter the port range (e.g., 1-100): ")
 
-if scan_type == '1':
+    if scan_type == '1':
         print("Nmap Version: ", scanner.nmap_version())
         scanner.scan(ip_addr, ports, '-v -sS')
         print_scan_info(scanner, ip_addr)
