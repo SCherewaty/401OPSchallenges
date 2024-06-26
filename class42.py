@@ -28,19 +28,25 @@ def main():
     scan_type = input("Select scan to execute:\n1) SYN ACK Scan\n2) UDP Scan\n3) OS Detection\n")
     ports = input("Enter the port range (e.g., 1-100): ")
 
-if resp == '1':
-    print("Nmap Version: ", scanner.nmap_version())
-    scanner.scan(ip_addr, range, '-v -sS')
-    print(scanner.scaninfo())
-    print("Ip Status: ", scanner[ip_addr].state())
-    print(scanner[ip_addr].all_protocols())
-    print("Open Ports: ", scanner[ip_addr]['tcp'].keys())
-elif resp == '2':
-    ### TODO: Add missing code block here
-    print("Please enter a valid option") ### TODO: Remove this
-elif resp == '3':
-    ### TODO: Add missing code block here
-    print("Please enter a valid option") ### TODO: Remove this
-elif resp >= '4':
-    print("Please enter a valid option")
-``
+if scan_type == '1':
+        print("Nmap Version: ", scanner.nmap_version())
+        scanner.scan(ip_addr, ports, '-v -sS')
+        print_scan_info(scanner, ip_addr)
+        print("Open Ports: ", scanner[ip_addr]['tcp'].keys())
+    elif scan_type == '2':
+        scanner.scan(ip_addr, ports, '-v -sU')
+        print_scan_info(scanner, ip_addr)
+        print("Open Ports: ", scanner[ip_addr]['udp'].keys())
+    elif scan_type == '3':
+        scanner.scan(ip_addr, ports, '-v -O')
+        print_scan_info(scanner, ip_addr)
+        if 'osclass' in scanner[ip_addr]:
+            for osclass in scanner[ip_addr]['osclass']:
+                print(f"The OS of {ip_addr} is {osclass['osfamily']} {osclass['osgen']}")
+        else:
+            print("No OS information available.")
+    else:
+        print("Please enter a valid option")
+
+if __name__ == "__main__":
+    main()
