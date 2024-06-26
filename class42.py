@@ -22,9 +22,11 @@ def main():
     print("Nmap Automation Tool")
     print("--------------------")
     
-range = '1-50'
+ ip_addr = input("IP address to scan: ")
+    print(f"The IP you entered is: {ip_addr}")
 
-### TODO: Prompt the user to type in a port range for this tool to scan
+    scan_type = input("Select scan to execute:\n1) SYN ACK Scan\n2) UDP Scan\n3) OS Detection\n")
+    ports = input("Enter the port range (e.g., 1-100): ")
 
 if resp == '1':
     print("Nmap Version: ", scanner.nmap_version())
