@@ -16,10 +16,16 @@ hostip = input("Enter the host IP address here: ")
 portno = int(input("Enter the port number:"))
 
 def portScanner(portno):
-    if sockmod.FUNCTION((hostip, portno)): # TODO: Replace "FUNCTION" with the appropriate socket.function call as found in the [socket docs](https://docs.python.org/3/library/socket.html)
-        print("Port closed")
-    else:
+    try:
+        sockmod.connect((hostip, portno)): # TODO: Replace "FUNCTION" with the appropriate socket.function call as found in the [socket docs](https://docs.python.org/3/library/socket.html)
         print("Port open")
+    except socket.timeout
+        print("Connection timed out")
+    except socket.error:
+        print("Port closed")
+    finally:
+        sockmod.close()
 
-portScanner(port)
+portScanner(portno)
 
+# End
