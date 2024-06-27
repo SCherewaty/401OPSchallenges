@@ -1,19 +1,19 @@
 #!/usr/bin/env python3
 
 #Author: Steve Cherewaty
-#Date: 06/25/2024
-#Purpose: Attack Tools Pt 2
+#Date: 06/26/2024
+#Purpose: Attack Tools Pt 3
 #Sources: Demo Code + https://pypi.org/project/python-nmap/
 # Conferred with ChatGPT for this assignment
 
 import socket
 
 sockmod = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-timeout = # TODO: # Set a timeout value here.
+timeout = 5
 sockmod.settimeout(timeout)
 
-hostip = # TODO: Collect a host IP from the user.
-portno = # TODO: Collect a port number from the user, then convert it to an integer data type.
+hostip = input("Enter the host IP address here: ")
+portno = int(input("Enter the port number:"))
 
 def portScanner(portno):
     if sockmod.FUNCTION((hostip, portno)): # TODO: Replace "FUNCTION" with the appropriate socket.function call as found in the [socket docs](https://docs.python.org/3/library/socket.html)
