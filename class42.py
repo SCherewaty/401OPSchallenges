@@ -6,8 +6,6 @@
 #Sources: Demo Code + https://pypi.org/project/python-nmap/
 # Conferred with ChatGPT for this assignment
 
-#!/usr/bin/env python3
-
 import nmap
 
 def print_scan_info(scanner, ip_addr):
