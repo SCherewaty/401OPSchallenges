@@ -9,7 +9,7 @@
 import socket
 
 sockmod = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-timeout = # TODO: Set a timeout value here.
+timeout = # TODO: # Set a timeout value here.
 sockmod.settimeout(timeout)
 
 hostip = # TODO: Collect a host IP from the user.
@@ -22,3 +22,4 @@ def portScanner(portno):
         print("Port open")
 
 portScanner(port)
+
